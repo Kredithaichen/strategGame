@@ -1,9 +1,9 @@
 # strategGame
 Exchanging Assets like Meshes 'n shit...
 
-To Do List: 
+To Do List:
 
-  Deckungssystem: 
+	Deckungssystem: 
   
     improvisierte und feste Elemente (Wände, selbst errichtete Barrieren, Fahrzeugwracks) sind als Deckung zugänglich
     
@@ -17,9 +17,8 @@ To Do List:
         
     Soldaten knien/legen sich dahinter -> Höhe ändert sich
     
-    
-    
-  Gegner: 
+	Gegner:
+	
     Platzhalter-Männchen meshen
     
     schießen via Raycast
@@ -30,10 +29,10 @@ To Do List:
     
     nehmen zufällig ein Mitglied des Squads aufs Korn
     
-  Meshes: 
+	Meshes: 
   
     Panzer (+ Wracks)
     
     Trucks (+ Wracks)
     
-  Rigs für Menschen
+	Rigs für Menschen
