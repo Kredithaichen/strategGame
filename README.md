@@ -36,3 +36,5 @@ To Do List:
 		Trucks (+ Wracks)
 
 	Rigs für Menschen
+	
+	in Unitys ThirdPersonCharacter-Klasse einarbeiten, um Animationen zu steuern
