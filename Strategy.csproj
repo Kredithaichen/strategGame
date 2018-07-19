@@ -288,10 +288,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ActionMenuHandler.cs" />
     <Compile Include="Assets\Scripts\Barrier.cs" />
+    <Compile Include="Assets\Scripts\CameraHandler.cs" />
     <Compile Include="Assets\Scripts\CheckCollision.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyTarget.cs" />
+    <Compile Include="Assets\Scripts\MapGrid.cs" />
     <Compile Include="Assets\Scripts\Resource.cs" />
     <Compile Include="Assets\Scripts\Squad.cs" />
     <Compile Include="Assets\Scripts\SquadAgent.cs" />

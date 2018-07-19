@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class Squad : MonoBehaviour
 {
     private Camera cam;
-    private NavMeshAgent agent;
 
     [SerializeField]
     private GameObject barrierPrefab;
@@ -28,10 +27,12 @@ public class Squad : MonoBehaviour
     private bool buildMode;
     private int availableResources;
 
+    [SerializeField]
+    private List<SquadAgent> agents;
+
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
-        agent = GetComponent<NavMeshAgent>();
 
         barrierPlaceholder.SetActive(false);
 
@@ -45,10 +46,18 @@ public class Squad : MonoBehaviour
         var ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+        if (Input.GetMouseButton(2))
+        {
+            transform.RotateAround(transform.position, Vector3.up, 10.0f * -Input.GetAxis("Mouse X"));
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
-            if (Physics.Raycast(ray, out hit))
-                agent.SetDestination(hit.point);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                foreach (var squadAgent in agents)
+                    squadAgent.Target = hit.point;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.B))
@@ -119,6 +128,17 @@ public class Squad : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        var positions = new List<Vector3>();
+
+        foreach (var squadAgent in agents)
+            if (squadAgent != null)
+                positions.Add(squadAgent.transform.position);
+
+        transform.position = GetMeanVector(positions.ToArray());
+    }
+
     void OnGUI()
     {
         GUI.color = Color.blue;
@@ -139,5 +159,23 @@ public class Squad : MonoBehaviour
     {
         foreach (var resource in resources)
             resource.ToggleSphere();
+    }
+
+    private Vector3 GetMeanVector(Vector3[] positions)
+    {
+        if (positions.Length == 0)
+            return Vector3.zero;
+
+        var x = 0f;
+        var y = 0f;
+        var z = 0f;
+
+        foreach (var pos in positions)
+        {
+            x += pos.x;
+            y += pos.y;
+            z += pos.z;
+        }
+        return new Vector3(x / positions.Length, y / positions.Length, z / positions.Length);
     }
 }
